@@ -1,0 +1,327 @@
+set $mod Mod4
+set $alt Mod1
+
+
+font pango:JF Flat 11
+
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock -- i3exit lock
+exec --no-startup-id nm-applet
+# بدء التشغيل
+# الخلفية
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id dunst
+exec --no-startup-id wmname LG3D
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+exec --no-startup-id blueman-applet
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id setxkbmap -layout "us,ar" -option "grp:win_space_toggle"
+exec_always --no-startup-id picom --experimental-backends -b
+
+exec --no-startup-id xrandr --output eDP-1
+
+# exec --no-startup-id rofication-daemon.py
+# exec --no-startup-id compton 
+# exec --no-startup-id bash ~/.config/polybar/launch.sh --forest
+# exec_always feh --bg-fill /media/shared/Pictures/fav/73.jpg
+# exec "setxkbmap -model pc104 -layout us,ar -variant ,, -option grp:win_space_toggle"
+
+
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# increase screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+ && $refresh_i3status
+# decrease screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%- && $refresh_i3status
+
+floating_modifier $mod
+
+bindsym $mod+q kill
+
+
+# KDE Settings 
+# for_window [title="Desktop — Plasma"] kill, floating enable, border none
+# for_window [class="plasmashell"] floating enable
+# for_window [class="Plasma"] floating enable, border none
+# for_window [title="plasma-desktop"] floating enable, border none
+# for_window [title="win7"] floating enable, border none
+# for_window [class="krunner"] floating enable, border none
+# for_window [class="Kmix"] floating enable, border none
+# for_window [class="Klipper"] floating enable, border none
+# for_window [class="Plasmoidviewer"] floating enable, border none
+# for_window [class="(?i)*nextcloud*"] floating disable
+# for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
+# no_focus [class="plasmashell" window_type="notification"] 
+
+
+# ------------------
+# اختصارات
+# ------------------
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $alt+h split h
+
+# split in vertical orientation
+bindsym $alt+u split v
+
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $alt+s layout stacking
+bindsym $alt+t layout tabbed
+bindsym $alt+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+f floating toggle
+# enter fullscreen mode for the focused container
+bindsym $mod+m fullscreen toggle
+
+# change focus between tiling / floating windows
+bindsym $alt+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# طرفية
+set $ws1 "1:"
+# انترنت 
+set $ws2 "2:"
+# vs code
+set $ws3 "3:" 
+# ملفات
+set $ws4 "4:" 
+# اندرويد ستوديد
+set $ws5 "5:" 
+# دردشة
+set $ws6 "6:"
+# ميديا
+set $ws7 "7:" 
+# set $ws8 "8"
+# set $ws9 "9"
+# set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+# bindsym $mod+8 workspace number $ws8
+# bindsym $mod+9 workspace number $ws9
+# bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+# bindsym $mod+Shift+8 move container to workspace number $ws8
+# bindsym $mod+Shift+9 move container to workspace number $ws9
+# bindsym $mod+Shift+0 move container to workspace number $ws10
+
+
+# reload the configuration file
+bindsym $mod+Shift+b reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# البرامج
+bindsym $mod+Return exec "konsole"
+
+bindsym $mod+Shift+f exec "firefox"
+
+bindsym $mod+Shift+c exec "code"
+bindsym $mod+Shift+a exec "studio"
+bindsym $mod+Shift+p exec "charm"
+bindsym Print exec "flameshot gui"
+
+bindsym $mod+Shift+e exec "dolphin"
+
+bindsym $mod+Shift+t exec "telegram-desktop"
+
+bindsym $mod+c exec "clementine"
+bindsym $mod+v exec "easyeffects"
+bindsym --release $mod+x exec "xcolor -s"
+
+bindsym $mod+l exec "rofi -show p -modi p:/home/ahmed/.config/rofi/rofi-power-menu -theme power-menu-theme"
+bindsym $mod+r exec "rofi -show drun"
+bindsym $alt+Tab exec "rofi -show"
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+u exec "i3-nagbar -t warning -m '                           هل تريد الخروج؟'  -B 'نعم' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+p mode "default"
+}
+
+bindsym $mod+p mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+# bar {
+#         status_command i3status
+# }
+# ------------------
+# BAR
+# ------------------
+bar {
+	status_command /usr/bin/bumblebee-status \
+                -m playerctl cpu sensors memory disk battery network_traffic pasink time shortcut \
+                -p playerctl.format="{{title}}" \
+                cpu.warning \
+                sensors.show_freq="false" \
+                memory.format="{percent:05.02f}%" \
+                disk.format="{percent:05.02f}%" \
+                time.format="%I:%M - %A %d (%B)" \
+                shortcut.labels=" خروج" \
+                shortcut.cmds="rofi -show p -modi p:/home/ahmed/.config/rofi/rofi-power-menu -theme power-menu-theme" \
+                -t gruvbox-powerline
+
+	# status_command /usr/bin/bumblebee-status \
+        #         -m playerctl -p playerctl.format="{{title}}" \
+        #         -m rofication weather -p weather.showcity="false" \
+	# 	-m cpu -p cpu.warning \
+        #         -m sensors -p sensors.show_freq="false" \
+        #         -m memory -p memory.format="{percent:05.02f}%" \
+        #         -m disk -p disk.format="{percent:05.02f}%" \
+        #         -m battery network_traffic \
+        #         -m pasink time -p time.format="%I:%M - %A %d (%B)" \
+        #         -m shortcut -p shortcut.labels=" خروج" shortcut.cmds="rofi -show drun" \
+        #         -t onedark-powerline
+                # -t iceberg-powerline
+                # -t iceberg-rainbow
+                # -t powerline
+                # -t gruvbox-powerline-light
+                # -t gruvbox-powerline # Ramadan 
+                # -t nord-powerline
+                # -t dracula-powerline
+                # -t greyish-powerline
+                # -t solarized-powerline
+
+        position top
+
+        colors {
+                background #1f2127
+                statusline #e6bc7c
+                separator #666666
+
+                                   #Border #BG     #Text
+                # focused_workspace  #61AFEF #61AFEF #ffffff
+                # active_workspace   #ABB2BF #ABB2BF #ffffff
+                # inactive_workspace #56B6C2 #56B6C2 #282C34
+                # urgent_workspace   #C678dd #C678dd #ffffff
+                # binding_mode       #2f343a #900000 #ffffff
+                
+                # As onedark-powerline
+                active_workspace   #e5c07b #e5c07b #282c34
+                focused_workspace  #e6bc7c #e6bc7c #1f2127
+                inactive_workspace #232634 #232634 #e6bc7c
+                urgent_workspace   #e06c75 #e06c75 #282c34
+                binding_mode       #2f343a #900000 #e6bc7c 
+        }
+
+        tray_output primary
+        # tray_padding 4
+        # separator_symbol ":|:"
+        # workspace_buttons yes
+        # workspace_min_width 50
+        # binding_mode_indicator no
+        strip_workspace_name no
+        strip_workspace_numbers yes
+
+        # font pango:Iosevka Custome 11
+}
+
+default_border pixel 1
+
+# الوان                 border  backgr. text    indicator child_border
+client.focused          #e6bc7c #e6bc7c #282c34 #e6bc7c   #e6bc7c
+client.unfocused        #E06C75 #E06C75 #282c34 #E06C75   #E06C75
+client.focused_inactive #E06C75 #E06C75 #282c34 #E06C75   #E06C75
+client.urgent           #2f343a #900000 #282c34 #900000   #900000
+client.placeholder      #000000 #0c0c0c #282c34 #000000   #0c0c0c
+
+client.background       #ffffff
+
+
+# ------------------
+# اعدادات
+# ------------------
+
+# قواعد مساحات العمل
+# ------------------ عام ----------------
+assign [class="konsole"] $ws1
+
+# ------------------ انترنت ------------
+assign [class="firefox"] $ws2
+assign [class="Chromium"] $ws2
+
+# ------------------ تطوير ----------------
+assign [class="code"] $ws3
+assign [class="Code"] $ws3
+assign [class="jetbrains-studio"] $ws5
+
+# ------------------ ملفات ----------------
+assign [class="nemo"] $ws4
+assign [class="dolphin"] $ws4
+assign [class="ark"] $ws4
+
+# ------------------ دردشة ----------------
+assign [class="TelegramDesktop"] $ws6
+
+# ------------------ ميديا ----------------
+assign [class="vlc"] $ws7
+assign [class="Clementine"] $ws7
+assign [class="Pulseeffects"] $ws7
+assign [class="mpv"] $ws7
+assign [class="easyeffects"] $ws7
+
+# ----------
+# اعدادات اخرى 
+# ----------
+popup_during_fullscreen leave_fullscreen
+gaps inner 10
+# border_radius 25
+
+# for_window [workspace=$ws1] floating enable
+for_window [workspace=$ws7] floating enable
