@@ -1,4 +1,8 @@
-yay -S i3-gaps bumblebee-status rofi dunst nitrogen qt5-gsettings lxappearance konsole xfce4-power-manager blueman xorg-setxkbmap picom-ibhagwan-git ark dolphin
+<b>Arch users</b>
+	
+	
+	yay -S i3-gaps bumblebee-status rofi dunst nitrogen qt5-gsettings lxappearance konsole xfce4-power-manager blueman xorg-setxkbmap picom-ibhagwan-git ark dolphin
+	
 
 <ol>
   <li>i3-gaps  -> i3 wm with gaps in between opened apps </li>
