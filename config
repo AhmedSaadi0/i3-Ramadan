@@ -5,18 +5,17 @@ set $alt Mod1
 font pango:JF Flat 11
 
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock -- i3exit lock
+# exec --no-startup-id xss-lock -- i3exit lock
 exec --no-startup-id nm-applet
 # بدء التشغيل
 # الخلفية
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id dunst
-exec --no-startup-id wmname LG3D
+exec --no-startup-id dunst -config ~/.config/i3/dunst/dunstrc
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 exec --no-startup-id blueman-applet
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id setxkbmap -layout "us,ar" -option "grp:win_space_toggle"
-exec_always --no-startup-id picom --experimental-backends -b
+exec_always --no-startup-id picom -b --experimental-backends --dbus --config ~/.config/i3/picom/picom.conf
 
 exec --no-startup-id xrandr --output eDP-1
 
@@ -162,7 +161,7 @@ bindsym $mod+c exec "clementine"
 bindsym $mod+v exec "easyeffects"
 bindsym --release $mod+x exec "xcolor -s"
 
-bindsym $mod+l exec "rofi -show p -modi p:/home/ahmed/.config/rofi/rofi-power-menu -theme power-menu-theme"
+bindsym $mod+l exec "rofi -show p -modi p:~/.config/i3/rofi/rofi-power-menu -theme ~/.config/i3/rofi/power-menu-theme"
 bindsym $mod+r exec "rofi -show drun"
 bindsym $alt+Tab exec "rofi -show"
 
@@ -270,9 +269,17 @@ bar {
         strip_workspace_numbers yes
 
         # font pango:Iosevka Custome 11
+
+        height 25
 }
 
 default_border pixel 1
+
+popup_during_fullscreen leave_fullscreen
+gaps inner 10
+# border_radius 25
+# smart_borders on
+
 
 # الوان                 border  backgr. text    indicator child_border
 client.focused          #e6bc7c #e6bc7c #282c34 #e6bc7c   #e6bc7c
@@ -319,9 +326,7 @@ assign [class="easyeffects"] $ws7
 # ----------
 # اعدادات اخرى 
 # ----------
-popup_during_fullscreen leave_fullscreen
-gaps inner 10
-# border_radius 25
+
 
 # for_window [workspace=$ws1] floating enable
 for_window [workspace=$ws7] floating enable
